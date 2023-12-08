@@ -9,7 +9,7 @@ function App() {
   const [number, setNumber] = useState('');
   const [target, setTarget] = useState('');
   const [message, setMessage] = useState('');
-  const [operationMessage, setOPerationMessage] = useState('');
+  const [operationMessage, setOperationMessage] = useState('');
   let [searchNumStep, setSearchNumStep] = useState(0);
 
 
@@ -29,7 +29,7 @@ function App() {
 
  async function sortArr(arr) {
 
-  setOPerationMessage('Sorting Array...');
+  setOperationMessage('Sorting Array...');
     let temp1, temp2, sorted = arr.slice();
     for (let i = 0; i < arr.length; i++) {
       sorted = changePropertyFromTo(sorted,i, i, 'left_operand_node');
@@ -61,7 +61,7 @@ function App() {
       sorted = changePropertyFromTo(sorted,i, i, '');
 
     }
-    setOPerationMessage('Sorting Array...Done!');
+    setOperationMessage('Sorting Array...Done!');
     return sorted.slice();
   }
 
@@ -72,7 +72,7 @@ function App() {
     let right = localArr.length - 1;
     let mid = Math.floor((left + right) / 2);
 
-    setOPerationMessage('Searching Target: ...');
+    setOperationMessage('Searching Target: ...');
     await sleep(500);
 
 
@@ -81,26 +81,26 @@ function App() {
       mid = Math.floor((left + right) / 2);
       localArr = changePropertyFromTo(localArr.slice(), mid, mid, 'left_operand_node');
 
-      setOPerationMessage('Searching Target: Get the middle number.');
+      setOperationMessage('Searching Target: Get the middle number.');
       setNumbers(localArr.slice());
       await sleep(2000);
 
-      setOPerationMessage('Searching Target: Check if middle number is equal to '+ target+'.');
+      setOperationMessage('Searching Target: Check if middle number is equal to '+ target+'.');
 
       if (Number.parseInt(localArr[mid].value) === target) {
         localArr = changePropertyFromTo(localArr.slice(), 0, localArr.length-1 , 'ignored_node');
         localArr = changePropertyFromTo(localArr.slice(), mid, mid, '');
-        setOPerationMessage('Target found at '+ mid + ' index in just '+ searchNumStep +' step/s.');
+        setOperationMessage('Target found at '+ mid + ' index in just '+ searchNumStep +' step/s.');
         return localArr;
       }else{
-        setOPerationMessage('Searching Target: Middle number doesn\'t match to the target.');
+        setOperationMessage('Searching Target: Middle number doesn\'t match to the target.');
         localArr = changePropertyFromTo(localArr.slice(), mid, mid, 'negative_node');
       }
 
       setNumbers(localArr.slice());
       await sleep(2000);
 
-      setOPerationMessage('Searching Target: Check if target is greater or less than the middle number.');
+      setOperationMessage('Searching Target: Check if target is greater or less than the middle number.');
       await sleep(2000);
 
       if (Number.parseInt(localArr[mid].value) === target) {
@@ -108,34 +108,35 @@ function App() {
 
       } else if (arr[mid].value < target) {
 
-        setOPerationMessage('Searching Target: Target is greater than the middle number.');
+        setOperationMessage('Searching Target: Target is greater than the middle number.');
         await sleep(2000);
-        setOPerationMessage('Searching Target: Search target in the right half of the array.');
+        setOperationMessage('Searching Target: Search target in the right half of the array.');
         localArr = changePropertyFromTo(localArr.slice(), left, mid, 'ignored_node' );
         setNumbers(localArr.slice());
         await sleep(2000);
         left = mid + 1; // Target is in the right half
 
       } else {
-        setOPerationMessage('Searching Target: Target is less than the middle number.');
+        setOperationMessage('Searching Target: Target is less than the middle number.');
         await sleep(2000);
-        setOPerationMessage('Searching Target: Search target in the left half of the array.');
+        setOperationMessage('Searching Target: Search target in the left half of the array.');
         localArr = changePropertyFromTo(localArr.slice(), mid, right, 'ignored_node' );
         setNumbers(localArr.slice());
         await sleep(2000);
-        right = mid - 1; // Target is in the left half
+        right = mid - 1; 
       }
       
     }
     localArr = changePropertyFromTo(localArr.slice(), mid, mid, 'ignored_node' );
-    setOPerationMessage('Target Not Found');
+    setOperationMessage('Target Not Found');
     await sleep(3000);
-    return localArr.slice(); // Element not found
+    return localArr.slice();
   }
   
 
   const clearArr = () => {
     setSearchNumStep(0);
+    setOperationMessage('')
     setNumbers([]);
   }
 
@@ -172,6 +173,7 @@ function App() {
 
 
   const resetProp = () => {
+    setOperationMessage('')
     setNumbers(changePropertyFromTo(numbers, 0, numbers.length-1, ''));
   };
 
@@ -189,7 +191,7 @@ function App() {
           <input type="text" name="" id="target_tf" value={target} onChange={(e) => {setTarget(e.target.value)}}/>
           <button className='button_style_1' onClick={start}>Start</button>
           <button onClick={resetProp} style={{margin: '0 0 0 10px'}}>Reset</button>
-          <button onClick={clearArr} style={{margin: '0 0 0 10px'}}>Clear</button>
+          <button onClick={clearArr} style={{margin: '0 0 0 10px', backgroundColor: 'gray'}}>Clear</button>
         </div>
       </div>
         <p className='message'>{message}</p>
