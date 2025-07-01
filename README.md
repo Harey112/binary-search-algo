@@ -12,8 +12,7 @@ Whether you're a student, an aspiring developer, or just curious about algorithm
 
 - ✅ Animated step-by-step visualization of the binary search process  
 - ✅ Visual indicators for low, high, and mid pointers  
-- ✅ User input to test custom arrays and target values  
-- ✅ Mobile-friendly responsive UI  
+- ✅ User input to test custom arrays and target values   
 - ✅ Built using **React.js** with functional components and hooks  
 
 ## 🛠️ Tech Stack
