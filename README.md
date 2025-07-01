@@ -28,7 +28,7 @@ This project was created as part of a **school activity** to enhance understandi
 
 ## 📸 Demo
 
-[![Watch the demo video]](https://drive.google.com/file/d/1spmRoWuP2G5F3wGud2XVf29VOlLbixnr/view?usp=sharing)
+[![Watch the demo video](./public/Thumbnail.png)                                             ](https://drive.google.com/file/d/1spmRoWuP2G5F3wGud2XVf29VOlLbixnr/view?usp=sharing)
 
 
 ## 📦 Installation & Usage
